@@ -13,7 +13,13 @@ class ForceJson
      */
     public function handle(Request $request, Closure $next)
     {
-        $request->headers->set('Accept', 'application/json');
-        return $next($request);
+        //$request->headers->set('Accept', 'application/json');
+
+        $data = $next($request);
+
+        
+
+        return response()->json($data, 200, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'],
+        JSON_UNESCAPED_UNICODE);
     }
 }

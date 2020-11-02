@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return ['text' => 'hello world'];
+    return ['result' => 'warning', 'message' => 'Для доступа к платформе по API настройте подключение'];
 });
