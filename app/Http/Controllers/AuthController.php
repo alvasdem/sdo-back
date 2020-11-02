@@ -55,7 +55,7 @@ class AuthController extends Controller
                 'user_phone' => 'required|string',
                 'name'     => 'required|string|between:2,100',
                 'user_email'    => 'required|email|unique:users',
-                'user_password' => 'required|between:6,255|confirmed',
+                'password' => 'required|between:6,255|confirmed',
                 'user_phone' => 'required|string',
                 'date_of_birth' => 'required|string',
                 //'partner_id' => 'required|string',
@@ -82,7 +82,7 @@ class AuthController extends Controller
         $user = User::create(
             array_merge(
                 $validator->validated(),
-                ['user_password' => bcrypt($request->user_password)]
+                ['password' => bcrypt($request->password)]
             )
         );
 
