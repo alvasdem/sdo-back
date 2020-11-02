@@ -23,7 +23,7 @@ class AuthController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'email'    => 'required|email',
+                'user_email'    => 'required|email',
                 'password' => 'required|string|min:6',
             ]
         );
@@ -82,7 +82,7 @@ class AuthController extends Controller
         $user = User::create(
             array_merge(
                 $validator->validated(),
-                ['password' => bcrypt($request->password)]
+                ['user_password' => bcrypt($request->user_password)]
             )
         );
 
