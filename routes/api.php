@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,14 @@ use Illuminate\Support\Facades\Route;
 */
 Route::fallback(function(){
     return response()->json([
-        'message' => 'Ошибка!'], 404);
+        'message' => 'Ошибка!'], 404, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);
+});
+//Route::get('/apiList', [ApiController::class, '@list']);
+Route::get('/', function () {
+    //return view('swagger-description');
+    //return view('welcome');
+    return response()->json([
+        'result' => 'warning', 'message' => 'Для доступа к платформе по API настройте подключение'], 404, ['Content-Type' => 'application/json;charset=UTF-8', 'Charset' => 'utf-8'], JSON_UNESCAPED_UNICODE);  
 });
 
 Route::get('/apiList', ['uses' => ApiController::class . '@lists']);

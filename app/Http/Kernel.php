@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+use RonasIT\Support\AutoDoc\Http\Middleware\AutoDocMiddleware;
 
 class Kernel extends HttpKernel
 {
@@ -16,7 +17,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         // \App\Http\Middleware\TrustHosts::class,
         \Fruitcake\Cors\HandleCors::class,
-        \App\Http\Middleware\ForceJson::class,
+       // \App\Http\Middleware\ForceJson::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
@@ -42,8 +43,10 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            'throttle:api',
+            'throttle:120,1',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            AutoDocMiddleware::class
+
             
         ],
     ];
@@ -65,7 +68,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
-        'return-json' => \App\Http\Middleware\ForceJson::class,
+     //   'return-json' => \App\Http\Middleware\ForceJson::class,
 
     ];
 }
