@@ -7,5 +7,16 @@ use Illuminate\Http\Request;
 
 class ApiController extends Controller
 {
-    use ApiResponser;
+    public function lists()
+    {
+        $data = [
+            'some' => 'complex',
+            'structure' => [
+                'with' => 'multiple',
+                'nesting' => []
+            ]
+        ];
+
+        return response()->json($data);
+    }
 }

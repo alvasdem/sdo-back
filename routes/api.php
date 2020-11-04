@@ -18,6 +18,7 @@ Route::fallback(function(){
         'message' => 'Ошибка!'], 404);
 });
 
+Route::get('/apiList', ['uses' => ApiController::class . '@lists']);
 
 Route::group([
 
